@@ -181,6 +181,19 @@ USB_Device_Library/fast:
 	$(MAKE) $(MAKESILENT) -f cube/cmake/stm32cubemx/CMakeFiles/USB_Device_Library.dir/build.make cube/cmake/stm32cubemx/CMakeFiles/USB_Device_Library.dir/build
 .PHONY : USB_Device_Library/fast
 
+#=============================================================================
+# Target rules for targets named EmbeddedLib
+
+# Build rule for target.
+EmbeddedLib: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 EmbeddedLib
+.PHONY : EmbeddedLib
+
+# fast build rule for target.
+EmbeddedLib/fast:
+	$(MAKE) $(MAKESILENT) -f lib/EmbeddedLib/CMakeFiles/EmbeddedLib.dir/build.make lib/EmbeddedLib/CMakeFiles/EmbeddedLib.dir/build
+.PHONY : EmbeddedLib/fast
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -191,6 +204,7 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... flash_dfu"
 	@echo "... flash_stlink"
+	@echo "... EmbeddedLib"
 	@echo "... STM32_Drivers"
 	@echo "... USB_Device_Library"
 	@echo "... firmware"

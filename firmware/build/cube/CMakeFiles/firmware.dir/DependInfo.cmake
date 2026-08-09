@@ -32,6 +32,7 @@ set(CMAKE_ASM_TARGET_INCLUDE_PATH
   "/home/aaron/Documents/GitHub/Tiny-Spectrum/firmware/cube/cmake/stm32cubemx/../../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc"
   "/home/aaron/Documents/GitHub/Tiny-Spectrum/firmware/cube/cmake/stm32cubemx/../../Drivers/CMSIS/Device/ST/STM32F4xx/Include"
   "/home/aaron/Documents/GitHub/Tiny-Spectrum/firmware/cube/cmake/stm32cubemx/../../Drivers/CMSIS/Include"
+  "/home/aaron/Documents/GitHub/Tiny-Spectrum/firmware/lib/EmbeddedLib/include"
   "/home/aaron/Documents/GitHub/Tiny-Spectrum/firmware/cube/Core/Inc"
   "/home/aaron/Documents/GitHub/Tiny-Spectrum/firmware/cube/USB_DEVICE/App"
   "/home/aaron/Documents/GitHub/Tiny-Spectrum/firmware/cube/USB_DEVICE/Target"

@@ -345,6 +345,7 @@ cube/firmware.elf: cube/cmake/stm32cubemx/CMakeFiles/USB_Device_Library.dir/__/_
 cube/firmware.elf: cube/cmake/stm32cubemx/CMakeFiles/USB_Device_Library.dir/__/__/Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ioreq.c.obj
 cube/firmware.elf: cube/cmake/stm32cubemx/CMakeFiles/USB_Device_Library.dir/__/__/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Src/usbd_cdc.c.obj
 cube/firmware.elf: cube/CMakeFiles/firmware.dir/build.make
+cube/firmware.elf: lib/EmbeddedLib/libEmbeddedLib.a
 cube/firmware.elf: cube/CMakeFiles/firmware.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/aaron/Documents/GitHub/Tiny-Spectrum/firmware/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Linking CXX executable firmware.elf"
 	cd /home/aaron/Documents/GitHub/Tiny-Spectrum/firmware/build/cube && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/firmware.dir/link.txt --verbose=$(VERBOSE)

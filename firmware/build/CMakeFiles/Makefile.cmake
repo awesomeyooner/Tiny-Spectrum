@@ -15,6 +15,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/home/aaron/Documents/GitHub/Tiny-Spectrum/firmware/cube/CMakeLists.txt"
   "/home/aaron/Documents/GitHub/Tiny-Spectrum/firmware/cube/cmake/gcc-arm-none-eabi.cmake"
   "/home/aaron/Documents/GitHub/Tiny-Spectrum/firmware/cube/cmake/stm32cubemx/CMakeLists.txt"
+  "/home/aaron/Documents/GitHub/Tiny-Spectrum/firmware/lib/EmbeddedLib/CMakeLists.txt"
   "/usr/share/cmake-3.28/Modules/CMakeASMInformation.cmake"
   "/usr/share/cmake-3.28/Modules/CMakeCInformation.cmake"
   "/usr/share/cmake-3.28/Modules/CMakeCXXInformation.cmake"
@@ -43,6 +44,7 @@ set(CMAKE_MAKEFILE_PRODUCTS
   "CMakeFiles/CMakeDirectoryInformation.cmake"
   "cube/CMakeFiles/CMakeDirectoryInformation.cmake"
   "cube/cmake/stm32cubemx/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "lib/EmbeddedLib/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
 # Dependency information for all targets:
@@ -52,4 +54,5 @@ set(CMAKE_DEPEND_INFO_FILES
   "cube/CMakeFiles/flash_stlink.dir/DependInfo.cmake"
   "cube/cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/DependInfo.cmake"
   "cube/cmake/stm32cubemx/CMakeFiles/USB_Device_Library.dir/DependInfo.cmake"
+  "lib/EmbeddedLib/CMakeFiles/EmbeddedLib.dir/DependInfo.cmake"
   )

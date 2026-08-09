@@ -14,24 +14,24 @@
 WS2812B leds = WS2812B(60, &htim2, TIM_CHANNEL_1);
 GPIODevice led = GPIODevice(GPIOC, GPIO_PIN_1);
 
-uint32_t adc = 0;
+uint32_t adc[2];
 
 void init()
 {
     leds.init();
 
-    HAL_ADC_Start_DMA(&hadc1, &adc, 1);
+    HAL_ADC_Start_DMA(&hadc1, adc, 2);
 
 } // end of "init()"
 
 
 void update()
 {
-    double H = ((sin(System::get_seconds()) + 1) / 2) * 360;
+    // double H = ((sin(System::get_seconds()) + 1) / 2) * 360;
     // double H = fmod(System::get_seconds() / 10, 1) * 360;
-    // double H = ((double)adc / 4096) * 360;
 
-    double V = (double)adc / 4096;
+    double H = ((double)adc[0] / 4096) * 360;
+    double V = (double)adc[1] / 4096;
 
     // auto rgb = color_space::HSV_to_RGB(H).times(255);
 
@@ -45,9 +45,10 @@ void update()
 
     for(int i = 0; i < num_leds; i++)
     {
-        double H_i = fmod(H + (i * 5), 360);
+        // double H_i = fmod(H + (i * 5), 360);
+        double H_i = H;
 
-        auto rgb = color_space::HSV_to_RGB(H_i, 1, V).times(255);
+        auto rgb = color_space::HSV_to_RGB(H_i, V, 1).times(255);
 
         uint8_t r = rgb.at(0);
         uint8_t g = rgb.at(1);
@@ -58,7 +59,7 @@ void update()
 
     leds.update();
 
-    Serial.println(adc);
+    // Serial.println(adc);
     
 } // end of "update()"
 

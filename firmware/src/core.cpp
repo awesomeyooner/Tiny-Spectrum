@@ -9,7 +9,7 @@
 #include "color/color_space.hpp"
 
 
-WS2812B leds = WS2812B(5, &htim2, TIM_CHANNEL_1);
+WS2812B leds = WS2812B(60, &htim2, TIM_CHANNEL_1);
 GPIODevice led = GPIODevice(GPIOC, GPIO_PIN_1);
 
 void init()
@@ -21,15 +21,33 @@ void init()
 
 void update()
 {
-    double H = ((sin(System::get_seconds()) + 1) / 2) * 360;
+    // double H = ((sin(System::get_seconds()) + 1) / 2) * 360;
+    double H = fmod(System::get_seconds() / 10, 1) * 360;
 
-    auto rgb = color_space::HSV_to_RGB(H).times(255);
+    // auto rgb = color_space::HSV_to_RGB(H).times(255);
 
-    uint8_t r = rgb.at(0);
-    uint8_t g = rgb.at(1);
-    uint8_t b = rgb.at(2);
+    // uint8_t r = rgb.at(0);
+    // uint8_t g = rgb.at(1);
+    // uint8_t b = rgb.at(2);
 
-    leds.set_color(r, g, b);
+    // leds.set_color(r, g, b);
+
+    int num_leds = leds.get_num_leds();
+
+    for(int i = 0; i < num_leds; i++)
+    {
+        double H_i = fmod(H + (i * 5), 360);
+
+        auto rgb = color_space::HSV_to_RGB(H_i).times(255);
+
+        uint8_t r = rgb.at(0);
+        uint8_t g = rgb.at(1);
+        uint8_t b = rgb.at(2);
+
+        leds.set_color(i, r, g, b, false);
+    }
+
+    leds.update();
     
 } // end of "update()"
 

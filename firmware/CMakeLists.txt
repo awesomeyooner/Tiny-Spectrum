@@ -32,6 +32,14 @@ add_subdirectory(lib/EmbeddedLib)
 target_link_libraries(EmbeddedLib PRIVATE shared_library)
 target_link_libraries(${CMAKE_PROJECT_NAME} EmbeddedLib)
 
+add_subdirectory(lib/WireLib)
+target_link_libraries(WireLib PRIVATE shared_library)
+target_link_libraries(${CMAKE_PROJECT_NAME} WireLib)
+
+add_subdirectory(lib/ActionLib)
+target_link_libraries(ActionLib PRIVATE shared_library)
+target_link_libraries(${CMAKE_PROJECT_NAME} ActionLib)
+
 # Add linked libraries
 target_link_libraries(${CMAKE_PROJECT_NAME}
     shared_library
@@ -42,6 +50,8 @@ target_sources(${CMAKE_PROJECT_NAME} PRIVATE
     # Add user sources here
     # src/my_code.cpp
     src/core.cpp
+
+    src/color/color_space.cpp
 )
 
 # Add include paths

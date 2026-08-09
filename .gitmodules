@@ -1,0 +1,3 @@
+[submodule "firmware/lib/EmbeddedLib"]
+	path = firmware/lib/EmbeddedLib
+	url = https://github.com/awesomeyooner/EmbeddedLib.git

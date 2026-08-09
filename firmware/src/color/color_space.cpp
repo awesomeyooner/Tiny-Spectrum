@@ -1,6 +1,7 @@
 #include "color/color_space.hpp"
 
 
+// https://en.wikipedia.org/wiki/HSL_and_HSV#HSV_to_RGB
 Vector<3> color_space::HSV_to_RGB(double H, double S, double V)
 {
     double C = V * S;

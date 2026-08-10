@@ -48,7 +48,7 @@ void update()
         // double H_i = fmod(H + (i * 5), 360);
         double H_i = H;
 
-        auto rgb = color_space::HSV_to_RGB(H_i, V, 1).times(255);
+        auto rgb = color_space::HSV_to_RGB(H_i, 1, V).times(255);
 
         uint8_t r = rgb.at(0);
         uint8_t g = rgb.at(1);

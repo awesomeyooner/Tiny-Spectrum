@@ -22,9 +22,17 @@ target_compile_definitions(shared_library INTERFACE
     STM32F446xx
 )
 
-# Add any libraries using these lines
-# add_subdirectory(lib/MyLib)
-# target_link_libraries(MyLib PRIVATE shared_library)
+set(LIBRARIES
+    EmbeddedLib
+    ActionLib
+    WireLib
+)
+
+foreach(Library IN ITEMS ${LIBRARIES})
+    add_subdirectory(lib/${Library})
+    target_link_libraries(${Library} PRIVATE shared_library)
+    target_link_libraries(${CMAKE_PROJECT_NAME} ${Library})
+endforeach()
 
 # Add linked libraries
 target_link_libraries(${CMAKE_PROJECT_NAME}

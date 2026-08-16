@@ -3,6 +3,7 @@
 #include "EmbeddedLib/system.hpp"
 #include "EmbeddedLib/devices/ws2812b.hpp"
 #include "EmbeddedLib/devices/gpio_device.hpp"
+#include "EmbeddedLib/devices/adc_device.hpp"
 
 #include "WireLib/communication/protocols/serial_interface.hpp"
 
@@ -13,14 +14,13 @@
 
 WS2812B leds = WS2812B(60, &htim2, TIM_CHANNEL_1);
 GPIODevice led = GPIODevice(GPIOC, GPIO_PIN_1);
-
-uint32_t adc[2];
+ADCDevice adc = ADCDevice(&hadc1, 4);
 
 void init()
 {
     leds.init();
 
-    HAL_ADC_Start_DMA(&hadc1, adc, 2);
+    adc.start_DMA();
 
 } // end of "init()"
 
@@ -30,8 +30,8 @@ void update()
     // double H = ((sin(System::get_seconds()) + 1) / 2) * 360;
     // double H = fmod(System::get_seconds() / 10, 1) * 360;
 
-    double H = ((double)adc[0] / 4096) * 360;
-    double V = (double)adc[1] / 4096;
+    double H = adc.get_percent(0) * 360;
+    double V = adc.get_percent(1);
 
     // auto rgb = color_space::HSV_to_RGB(H).times(255);
 
@@ -59,7 +59,7 @@ void update()
 
     leds.update();
 
-    // Serial.println(adc);
+    // Serial.println(adc.get_percent(2));
     
 } // end of "update()"
 

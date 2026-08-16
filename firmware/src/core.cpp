@@ -5,6 +5,8 @@
 #include "EmbeddedLib/devices/gpio_device.hpp"
 #include "EmbeddedLib/devices/adc_device.hpp"
 
+#include "EmbeddedLib/devices/lcd.hpp"
+
 #include "WireLib/communication/protocols/serial_interface.hpp"
 
 #include "color/color_space.hpp"
@@ -16,11 +18,15 @@ WS2812B leds = WS2812B(60, &htim2, TIM_CHANNEL_1);
 GPIODevice led = GPIODevice(GPIOC, GPIO_PIN_1);
 ADCDevice adc = ADCDevice(&hadc1, 4);
 
+LCD lcd = LCD(&hi2c1);
+
 void init()
 {
     leds.init();
 
     adc.start_DMA();
+
+    lcd.init();
 
 } // end of "init()"
 
@@ -58,6 +64,14 @@ void update()
     }
 
     leds.update();
+
+
+
+    lcd.set_cursor(0, 0);
+    lcd.send_string(adc.get_percent(2));
+
+    lcd.set_cursor(0, 1);
+    lcd.send_string(adc.get_percent(3));
 
     // Serial.println(adc.get_percent(2));
     

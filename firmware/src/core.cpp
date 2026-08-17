@@ -14,7 +14,7 @@
 #include "adc.h"
 
 
-WS2812B leds = WS2812B(60, &htim2, TIM_CHANNEL_1);
+WS2812B leds = WS2812B(64, &htim2, TIM_CHANNEL_1);
 GPIODevice led = GPIODevice(GPIOC, GPIO_PIN_1);
 ADCDevice adc = ADCDevice(&hadc1, 4);
 

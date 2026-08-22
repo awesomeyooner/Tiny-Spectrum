@@ -49,13 +49,13 @@ void update()
     //     led.set_low();
 
     // double H = ((sin(System::get_seconds()) + 1) / 2) * 360;
-    // double H = fmod(System::get_seconds() / 10, 1) * 360;
+    double H = fmod(System::get_seconds() / 10, 1) * 360;
 
-    double H = adc.get_percent(0) * 360;
+    // double H = adc.get_percent(0) * 360;
 
     double S = 1;
-    double V = 1;
-    // double V = adc.get_percent(1);
+    // double V = 1;
+    double V = adc.get_percent(0);
 
     // auto rgb = color_space::HSV_to_RGB(H).times(255);
 
@@ -69,8 +69,8 @@ void update()
 
     for(int i = 0; i < num_leds; i++)
     {
-        // double H_i = fmod(H + (i * 5), 360);
-        double H_i = H;
+        double H_i = fmod(H + (i * 2), 360);
+        // double H_i = H;
 
         auto rgb = color_space::HSV_to_RGB(H_i, S, V).times(255);
 

@@ -16,12 +16,15 @@
 
 WS2812B leds = WS2812B(64, &htim3, TIM_CHANNEL_4);
 GPIODevice led = GPIODevice(GPIOC, GPIO_PIN_1);
-ADCDevice adc = ADCDevice(&hadc1, 4);
+GPIODevice button = GPIODevice(GPIOB, GPIO_PIN_1);
+ADCDevice adc = ADCDevice(&hadc1, 3);
 
 LCD lcd = LCD(&hi2c1);
 
 void init()
 {
+    System::init();
+
     leds.init();
 
     adc.start_DMA();
@@ -33,11 +36,26 @@ void init()
 
 void update()
 {
+    System::update();
+
+    if(button.is_high())
+        led.set_high();
+    else
+        led.set_low();
+
+    // if(System::is_OK())
+    //     led.set_high();
+    // else
+    //     led.set_low();
+
     // double H = ((sin(System::get_seconds()) + 1) / 2) * 360;
     // double H = fmod(System::get_seconds() / 10, 1) * 360;
 
     double H = adc.get_percent(0) * 360;
-    double V = adc.get_percent(1);
+
+    double S = 1;
+    double V = 1;
+    // double V = adc.get_percent(1);
 
     // auto rgb = color_space::HSV_to_RGB(H).times(255);
 
@@ -54,7 +72,7 @@ void update()
         // double H_i = fmod(H + (i * 5), 360);
         double H_i = H;
 
-        auto rgb = color_space::HSV_to_RGB(H_i, 1, V).times(255);
+        auto rgb = color_space::HSV_to_RGB(H_i, S, V).times(255);
 
         uint8_t r = rgb.at(0);
         uint8_t g = rgb.at(1);
@@ -68,12 +86,12 @@ void update()
 
 
     lcd.set_cursor(0, 0);
-    lcd.send_string(adc.get_percent(2));
+    lcd.send_string(adc.get_percent(1));
 
     lcd.set_cursor(0, 1);
-    lcd.send_string(adc.get_percent(3));
+    lcd.send_string(adc.get_percent(2));
 
-    // Serial.println(adc.get_percent(2));
+    System::feed();
     
 } // end of "update()"
 
